@@ -1,7 +1,7 @@
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Input } from "@nextui-org/react";
 import { useState } from "react";
 
-function TransactionModal() {
+function TransactionModal({onSubmit}) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const [formState, setformState] = useState({
@@ -9,7 +9,7 @@ function TransactionModal() {
     NomorTelepon: " ",
     Alamat: " ",
     Biaya: " ",
-    Status: " ",
+    Status: "Dalam Proses",
   });
 
   const handleChange = (e) => {
@@ -22,7 +22,9 @@ function TransactionModal() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formState)
+    onSubmit(formState)
   }
+  // onSubmit (formState)
 
   return (
     <>
@@ -45,7 +47,31 @@ function TransactionModal() {
                   type="text"
                   name="NomorTelepon"
                   value={formState.NomorTelepon}
-                  label="Nomor Pelanggan"
+                  label="Nomor Telepon"
+                  className="mb-3"
+                  onChange={handleChange}
+                />
+                <Input
+                  type="text"
+                  name="Alamat"
+                  value={formState.Alamat}
+                  label="Alamat"
+                  className="mb-3"
+                  onChange={handleChange}
+                />
+                <Input
+                  type="text"
+                  name="Biaya"
+                  value={formState.Biaya}
+                  label="Biaya"
+                  className="mb-3"
+                  onChange={handleChange}
+                />
+                <Input
+                  type="text"
+                  name="Status"
+                  value={formState.Status}
+                  label="Status"
                   className="mb-3"
                   onChange={handleChange}
                 />

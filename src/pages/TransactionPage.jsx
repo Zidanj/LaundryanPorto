@@ -9,14 +9,28 @@ function Transaksi(){
         {Nama : "Zidan", NomorTelepon : "0895331472802", Alamat: "Desa Cigado", Biaya : "9000", Status : "Process"}
     ])
 
+    const [rowToEdit, setrowToEdit] = useState (null)
+
     const handleDeleteRow = (targetIdx) =>{
         setRows(rows.filter((_,idx)=> idx !== targetIdx))
     }
 
+    const handleEditRow = (idx) => {
+        setrowToEdit(idx)
+        
+        
+    }
+
+    const handleSubmit = (newRow) => {
+        setRows([...rows, newRow])
+    }
+
     return(
         <>
-        <TransactionModal/>
-        <TransactionTable rows = {rows} deleteRow = {handleDeleteRow}/>
+        <TransactionModal
+        onSubmit = {handleSubmit}
+        />
+        <TransactionTable rows = {rows} deleteRow = {handleDeleteRow} editRow = {handleEditRow}/>
         </>
     )
 }

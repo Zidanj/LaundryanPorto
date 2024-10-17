@@ -1,8 +1,8 @@
 import { Button, Table, TableBody, TableCell, TableColumn, TableHeader,TableRow } from "@nextui-org/react"
-import { BiDetail, BiPaperclip, BiPencil, BiTrash } from "react-icons/bi"
+import { BiDetail, BiPencil, BiTrash } from "react-icons/bi"
 
 
-function TransactionTable ({rows, deleteRow}){
+function TransactionTable ({rows, deleteRow, editRow}){
     return (
         <>
         <Table align="center" aria-label="Example static collection table">
@@ -25,7 +25,7 @@ function TransactionTable ({rows, deleteRow}){
                             <TableCell>{row.Status}</TableCell>
                             <TableCell>
                                 <Button className="mr-4 text-xl flex-col items-center" color="primary"><BiDetail/></Button>
-                                <Button className="mr-4 text-xl flex-col items-center"><BiPencil/></Button>
+                                <Button className="mr-4 text-xl flex-col items-center" onClick={()=>editRow}><BiPencil/></Button>
                                 <Button className = "mr-4 text-xl flex-col items-center" color="danger" onClick={()=>deleteRow(idx)}><BiTrash/></Button>
                             </TableCell>
                         </TableRow>
