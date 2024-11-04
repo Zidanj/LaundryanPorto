@@ -8,11 +8,11 @@ import { BiDetail, BiPencil } from "react-icons/bi"
 
 
 const DetailTrans = () => {
-    const [initialdata, setInitialData] = useState([])
+    const [initialdata, setInitialData] = useState(null)
     const navigate = useNavigate()
-    const params = useParams()
-    const fetchTrans = async (idx) => {
-        const response = await AxiosInstance.get("/api/v1/bills/" + params.id,
+    const {id} = useParams()
+    const fetchTrans = async () => {
+        const response = await AxiosInstance.get(`/api/v1/bills/${id}`,
             {
                 headers : {
                     Authorization : localStorage.getItem("token")
@@ -22,7 +22,7 @@ const DetailTrans = () => {
         setInitialData(response.data.data)
         console.log(initialdata)
     }
-    useEffect(()=>{fetchTrans()},[params.id])
+    useEffect(()=>{fetchTrans()},[])
     return(
         <div className="flex p-3">
             <SidebarComp/>
@@ -43,15 +43,12 @@ const DetailTrans = () => {
                 <TableColumn>Action</TableColumn>
             </TableHeader>
             <TableBody>
-                <TableRow>
-                            <TableCell>11</TableCell>
-                            <TableCell>111</TableCell>
-                            <TableCell>111</TableCell>
-                            <TableCell>
-                                <Button color="secondary" className="mr-3 text-2xl"><BiPencil/></Button>
-                                <Button color="danger" className="mr-3 text-2xl"><BiDetail/></Button>
-                            </TableCell>
-                        </TableRow>
+                        <TableRow>
+                        <TableCell>1111</TableCell>
+                        <TableCell>1111</TableCell>
+                        <TableCell>111111</TableCell>
+                        <TableCell>111111</TableCell>
+                    </TableRow>
             </TableBody>
          </Table>
          </div>

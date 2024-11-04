@@ -19,7 +19,8 @@ const TransactionPage = () => {
                 }
             }
         )
-        setRows(response.data.data)       
+        setRows(response.data.data)   
+        console.log(response.data.data)    
     }
     useEffect(()=>{fetchTrans()},[])
 
