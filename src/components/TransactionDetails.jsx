@@ -1,17 +1,16 @@
 import { Button, Divider, Input, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react"
 import { json, useNavigate, useParams } from "react-router-dom"
 import { AxiosInstance } from "../../API/axios"
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import SidebarComp from "./Sidebar"
 import Header from "./Header"
 import { BiDetail, BiPencil } from "react-icons/bi"
 
 
 const DetailTrans = () => {
-    const [initialdata, setInitialData] = useState(null)
-    const navigate = useNavigate()
+    const [initialdata, setInitialData] = useState([])
     const {id} = useParams()
-    const fetchTrans = async () => {
+    const fetchTrans = useCallback(async (data) => {
         const response = await AxiosInstance.get(`/api/v1/bills/${id}`,
             {
                 headers : {
@@ -21,7 +20,7 @@ const DetailTrans = () => {
         )
         setInitialData(response.data.data)
         console.log(initialdata)
-    }
+    },[id])
     useEffect(()=>{fetchTrans()},[])
     return(
         <div className="flex p-3">
