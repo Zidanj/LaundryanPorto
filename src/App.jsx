@@ -1,22 +1,36 @@
 import {Route, Routes } from "react-router-dom"
 import Dashboard from "./pages/Dashboard"
-import SidebarComp from "./components/Sidebar"
-import Transaksi from "./pages/TransactionPage"
+import ProdukPage from "./pages/ProdukPage"
+import ClientPage from "./pages/ClientPage"
+import TransactionPage from "./pages/TransactionPage"
+import SignInPage from "./pages/SignInPage"
+import { Toaster } from "sonner"
+import RegisterPage from "./pages/RegisterPage"
+import ProdukModalEdit from "./components/ProdukModalEdit"
+import UserPage from "./pages/UserPage"
+import ClientModalEdit from "./components/ClientModalEdit"
+import UserModalEdit from "./components/UserModalEdit"
+import DetailTrans from "./components/TransactionDetails"
 
 
 
 function App() {
   return (
     <>
-    <div className="flex"> 
-    <SidebarComp/>
-      <div className="flex-1 bg-white rounded-3xl">
+    <Toaster position="top-right" richColors expand={true}/>
     <Routes>
-        <Route element = {<Dashboard/>} path="/"/>
-        <Route element = {<Transaksi/>} path="/transaksi"/>
+        <Route element = {<RegisterPage/>} path = "/register"/>
+        <Route element = {<SignInPage/>} path="/"/>
+        <Route element = {<Dashboard/>} path="/home"/>
+        <Route element = {<TransactionPage/>} path = "/transaksi" />
+        <Route element = {<ProdukPage/>} path = "/produk"/>
+        <Route element = {<UserPage/>} path = "/user"/>
+        <Route element = {<ClientPage/>} path="/customer"/>
+        <Route element = {<ProdukModalEdit/>} path="/produk/edit/:id"/>
+        <Route element = {<ClientModalEdit/>} path="/customer/edit/:id"/>
+        <Route element = {<UserModalEdit/>} path="/user/edit/:id"/>
+        <Route element = {<DetailTrans/>} path="/transaksi/detail/:id"/>
     </Routes>
-      </div>
-    </div>
     </>
   )
 }

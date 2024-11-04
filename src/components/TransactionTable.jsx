@@ -1,40 +1,33 @@
-import { Button, Table, TableBody, TableCell, TableColumn, TableHeader,TableRow } from "@nextui-org/react"
+import { Button, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react"
 import { BiDetail, BiPencil, BiTrash } from "react-icons/bi"
 
 
-function TransactionTable ({rows, deleteRow, editRow}){
+
+const TransactionTable = ({rows, deleteRow, editRow}) => {
     return (
-        <>
-        <Table align="center" aria-label="Example static collection table">
+        <Table aria-label="ClientTable" align="center">
             <TableHeader>
-                <TableColumn>Nama</TableColumn>
-                <TableColumn>Nomor Telepon</TableColumn>
-                <TableColumn>Alamat</TableColumn>
-                <TableColumn>Biaya</TableColumn>
-                <TableColumn>Status</TableColumn>
+                <TableColumn>Nama Pelanggan</TableColumn>
+                <TableColumn>Nama Pelanggan</TableColumn>
+                <TableColumn>No. Telepon</TableColumn>
                 <TableColumn>Action</TableColumn>
             </TableHeader>
             <TableBody>
                 {
-                    rows.map((row,idx)=>{
-                        return <TableRow key={idx}>
-                            <TableCell>{row.Nama}</TableCell>
-                            <TableCell>{row.NomorTelepon}</TableCell>
-                            <TableCell>{row.Alamat}</TableCell>
-                            <TableCell>{row.Biaya}</TableCell>
-                            <TableCell>{row.Status}</TableCell>
+                    rows.map ((rows,idx) => {
+                        return <TableRow key = {idx}>
+                            <TableCell>{rows.customer.name}</TableCell>
+                            <TableCell>{rows.customer.address}</TableCell>
+                            <TableCell>{rows.customer.phoneNumber}</TableCell>
                             <TableCell>
-                                <Button className="mr-4 text-xl flex-col items-center" color="primary"><BiDetail/></Button>
-                                <Button className="mr-4 text-xl flex-col items-center" onClick={()=>editRow}><BiPencil/></Button>
-                                <Button className = "mr-4 text-xl flex-col items-center" color="danger" onClick={()=>deleteRow(idx)}><BiTrash/></Button>
+                                <Button color="secondary" className="mr-3 text-2xl" onClick={()=>editRow(idx)}><BiPencil/></Button>
+                                <Button color="danger" className="mr-3 text-2xl"><BiDetail/></Button>
                             </TableCell>
                         </TableRow>
                     })
-                    
                 }
             </TableBody>
         </Table>
-        </>
     )
 }
 
