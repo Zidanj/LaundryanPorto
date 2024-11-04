@@ -35,7 +35,7 @@ const TransactionModal = ({closeModal, fetchTrans}) => {
         setCust(response.data.data)
     }
     const addTrans = async(data) => {
-        try {const response = await AxiosInstance.post("/api/v1/bills",
+        try {const response = await AxiosInstance.post("api/v1/bills",
             {
                 customerId : selCus.id,
                 billDetails : [
@@ -69,17 +69,8 @@ const TransactionModal = ({closeModal, fetchTrans}) => {
         }
     }
 
-    try {
         useEffect(()=>{fetchCust()},[])
         useEffect(()=>{fetchProduk()},[])
-    } catch (error) {
-        Swal.fire({
-            title : "Gagal!",
-            text : "Server Error!",
-            icon : "error"
-        })
-    }
-
 
     const handleProductChange = (e)=>{
         const prodId = e.target.value
@@ -118,7 +109,7 @@ const TransactionModal = ({closeModal, fetchTrans}) => {
                 onChange={handleCustChange}
                 className="m-3">
                     {
-                        cust.map((item)=>{
+                        Array.isArray(cust) && cust.map((item)=>{
                             return <SelectItem key={item.id}>
                                 {item.name}
                             </SelectItem>
@@ -131,7 +122,7 @@ const TransactionModal = ({closeModal, fetchTrans}) => {
                 onChange={handleProductChange}
                 className="m-3">
                     {
-                        product.map((item)=>{
+                        Array.isArray(product) && product.map((item)=>{
                             return <SelectItem 
                             key={item.id}>
                                 {item.name}

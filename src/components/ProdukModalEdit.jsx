@@ -88,7 +88,7 @@ const ProdukModalEdit = ({closeModal}) => {
                 <Input
                 type="text"
                 name="type"
-                label ="Masukkan biaya/pcs" 
+                label ="Masukkan Tipe" 
                 className="w-96 m-3" 
                 value={typeInput}
                 onChange={(event)=>SetTypeInput(event.target.value)}

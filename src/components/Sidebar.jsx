@@ -10,10 +10,6 @@ function SidebarComp () {
         <h2 className="flex gap-4 ml-2 mb-4 max-w-32">Enigma Laundry</h2>
       </div>
       <div className="mt-4">
-        <Link to="/home" className="flex gap-3 mb-10 hover:bg-blue-950 rounded-lg p-2 hover:text-white">
-          <BiHome/>
-          Dashboard
-        </Link>
         <Link to="/transaksi" className="flex gap-3 mb-10 hover:bg-blue-950 rounded-lg p-2 hover:text-white">
           <BiQr/>
           Transaksi
@@ -28,7 +24,7 @@ function SidebarComp () {
         </Link>
         <Link to = "/customer" className="flex gap-4 mb-10 hover:bg-blue-950 rounded-lg p-2 hover:text-white">
           <BiMaleFemale/>
-          Client
+          Customer
         </Link>
       </div>
 

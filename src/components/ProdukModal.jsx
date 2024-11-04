@@ -73,7 +73,7 @@ const ProdukModal = ({closeModal, onSubmit, defaultValue, FetchProduk}) => {
                 render={({field, fieldState})=>(<Input {...field}
                     type="text"
                     name="name"
-                    label ="Masukkan kode produk" 
+                    label ="Masukkan Nama Produk" 
                     className="w-96 m-3" 
                     isInvalid={Boolean(fieldState.error)}
                     errorMessage={fieldState.error?.message}
@@ -85,7 +85,7 @@ const ProdukModal = ({closeModal, onSubmit, defaultValue, FetchProduk}) => {
                 render={({field, fieldState})=>(<Input {...field}
                     type="number"
                     name="price"
-                    label ="Masukkan kode produk" 
+                    label ="Masukkan Harga Produk" 
                     className="w-96 m-3" 
                     isInvalid={Boolean(fieldState.error)}
                     errorMessage={fieldState.error?.message}
@@ -97,7 +97,7 @@ const ProdukModal = ({closeModal, onSubmit, defaultValue, FetchProduk}) => {
                 render={({field, fieldState})=>(<Input {...field}
                     type="text"
                     name="type"
-                    label ="Masukkan kode produk" 
+                    label ="Masukkan Satuan Produk" 
                     className="w-96 m-3" 
                     isInvalid={Boolean(fieldState.error)}
                     errorMessage={fieldState.error?.message}

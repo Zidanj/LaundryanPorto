@@ -73,14 +73,14 @@ const ClientModalEdit = ({closeModal, fetchCust}) => {
                 readOnly
                     type="text"
                     name="name"
-                    label ="Masukkan kode produk" 
+                    label ="Id Pelanggan" 
                     className="w-96 m-3" 
                     value={params.id}
                 />
                 <Input
                     type="text"
                     name="name"
-                    label ="Masukkan kode produk" 
+                    label ="Masukkan Nama Pelanggan" 
                     className="w-96 m-3" 
                     value={nameInput}
                     onChange={(event)=>{SetNameInput(event.target.value)}}
@@ -88,7 +88,7 @@ const ClientModalEdit = ({closeModal, fetchCust}) => {
                 <Input
                     type="text"
                     name="phoneNumber"
-                    label ="Masukkan kode produk" 
+                    label ="Masukkan Nomor Telepon" 
                     className="w-96 m-3" 
                     value={phoneNumberInput}
                     onChange={(event)=>{SetPhoneNumberInput(event.target.value)}}
@@ -96,7 +96,7 @@ const ClientModalEdit = ({closeModal, fetchCust}) => {
                 <Input
                     type="text"
                     name="address"
-                    label ="Masukkan kode produk" 
+                    label ="Masukkan Alamat Pelanggan" 
                     className="w-96 m-3" 
                     value={addressInput}
                     onChange={(event)=>{SetAddressInput(event.target.value)}}

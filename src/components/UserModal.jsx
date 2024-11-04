@@ -76,7 +76,7 @@ const UserModal = ({closeModal, fetchUser}) => {
                     type="text"
                     name="name" 
                     className="w-96 m-3"
-                    label = "Masukkan Kode Service"
+                    label = "Masukkan Nama User"
                     isInvalid = {Boolean(fieldState.error)}
                     errorMessage = {fieldState.error?.message}
                     />)}
@@ -87,7 +87,7 @@ const UserModal = ({closeModal, fetchUser}) => {
                 render = {({field, fieldState})=>(<Input {...field} 
                     name="email"
                     className="w-96 m-3"
-                    label = "Masukkan Nama Service"
+                    label = "Masukkan Email User"
                     isInvalid = {Boolean(fieldState.error)}
                     errorMessage = {fieldState.error?.message}
                     />)}
@@ -98,7 +98,7 @@ const UserModal = ({closeModal, fetchUser}) => {
                 render={({field, fieldState})=>(<Input {...field}
                     name="username"
                     className="w-96 m-3"
-                    label = "Masukkan Harga Tambahan Layanan"
+                    label = "Masukkan Username"
                     isInvalid = {Boolean(fieldState.error)}
                     errorMessage = {fieldState.error?.message}
                     />)}
@@ -109,7 +109,7 @@ const UserModal = ({closeModal, fetchUser}) => {
                 render={({field, fieldState})=>(<Input {...field}
                     name="role"
                     className="w-96 m-3"
-                    label = "Masukkan Harga Tambahan Layanan"
+                    label = "Masukkan Role User"
                     isInvalid = {Boolean(fieldState.error)}
                     errorMessage = {fieldState.error?.message}
                     />)}

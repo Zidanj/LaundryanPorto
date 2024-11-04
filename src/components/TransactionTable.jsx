@@ -10,13 +10,13 @@ const TransactionTable = ({rows, editRow}) => {
         <Table aria-label="ClientTable" align="center">
             <TableHeader>
                 <TableColumn>Nama Pelanggan</TableColumn>
-                <TableColumn>Nama Pelanggan</TableColumn>
+                <TableColumn>Alamat</TableColumn>
                 <TableColumn>No. Telepon</TableColumn>
                 <TableColumn>Action</TableColumn>
             </TableHeader>
             <TableBody>
                 {
-                    rows.map ((row,idx) => {
+                    Array.isArray(rows) && rows.map ((row,idx) => {
                         return <TableRow key = {idx}>
                             <TableCell>{row.customer.name}</TableCell>
                             <TableCell>{row.customer.address}</TableCell>

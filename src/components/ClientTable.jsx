@@ -31,9 +31,9 @@ const ClientTable = ({rows, fetchCust}) => {
     return (
         <Table aria-label="ClientTable" align="center">
             <TableHeader>
-                <TableColumn>Id Pelanggan</TableColumn>
-                <TableColumn>Nama Pelanggan</TableColumn>
-                <TableColumn>Total Pembelian</TableColumn>
+                <TableColumn>Nama</TableColumn>
+                <TableColumn>No Telepon</TableColumn>
+                <TableColumn>Alamat</TableColumn>
                 <TableColumn>Action</TableColumn>
             </TableHeader>
             <TableBody>
