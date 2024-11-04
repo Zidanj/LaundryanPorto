@@ -19,14 +19,8 @@ const TransactionPage = () => {
                 }
             }
         )
-        // console.log(response.data.data[0]['billDetails']) 
         setRows(response.data.data)       
     }
-
-    // rows.map((row,idx)=>{
-    //     console.log(row.customer)
-    // })
-
     useEffect(()=>{fetchTrans()},[])
 
     const handleEdit = (idx) => {
@@ -67,7 +61,7 @@ const TransactionPage = () => {
                     setRowEdit(null)
                 }} 
                 onSubmit = {handleSubmit}
-                defaultValue = {RowEdit !== null && rows[RowEdit]}
+                fetchTrans = {fetchTrans}
                 />)}
             </div>
         </div>

@@ -1,9 +1,11 @@
 import { Button, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react"
 import { BiDetail, BiPencil, BiTrash } from "react-icons/bi"
+import { useNavigate } from "react-router-dom"
 
 
 
-const TransactionTable = ({rows, deleteRow, editRow}) => {
+const TransactionTable = ({rows, editRow}) => {
+    const navigate = useNavigate()
     return (
         <Table aria-label="ClientTable" align="center">
             <TableHeader>
@@ -14,14 +16,14 @@ const TransactionTable = ({rows, deleteRow, editRow}) => {
             </TableHeader>
             <TableBody>
                 {
-                    rows.map ((rows,idx) => {
+                    rows.map ((row,idx) => {
                         return <TableRow key = {idx}>
-                            <TableCell>{rows.customer.name}</TableCell>
-                            <TableCell>{rows.customer.address}</TableCell>
-                            <TableCell>{rows.customer.phoneNumber}</TableCell>
+                            <TableCell>{row.customer.name}</TableCell>
+                            <TableCell>{row.customer.address}</TableCell>
+                            <TableCell>{row.customer.phoneNumber}</TableCell>
                             <TableCell>
                                 <Button color="secondary" className="mr-3 text-2xl" onClick={()=>editRow(idx)}><BiPencil/></Button>
-                                <Button color="danger" className="mr-3 text-2xl"><BiDetail/></Button>
+                                <Button color="danger" className="mr-3 text-2xl" onClick={()=>{navigate(`detail/${rows[idx]['id']}`)}}><BiDetail/></Button>
                             </TableCell>
                         </TableRow>
                     })

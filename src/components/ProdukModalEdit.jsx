@@ -1,8 +1,6 @@
 import { Button, Divider, Input} from "@nextui-org/react"
 import { useEffect, useState } from "react"
-import { number } from "zod"
 import { AxiosInstance } from "../../API/axios"
-import { toast } from "sonner"
 import { useNavigate, useParams } from "react-router-dom"
 import Swal from "sweetalert2"
 
@@ -76,7 +74,7 @@ const ProdukModalEdit = ({closeModal}) => {
                 name="name"
                 label ="Masukkan nama produk" 
                 className="w-96 m-3"
-                value = {initialdata.name}
+                value = {nameInput}
                 onChange={(event)=>SetNameInput(event.target.value)}
                 />
                 <Input 

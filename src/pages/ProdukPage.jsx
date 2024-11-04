@@ -20,6 +20,7 @@ const ProdukPage = () => {
                 Authorization : localStorage.getItem("token")
             }
         })
+        console.log(response.data)
         setRows(response.data.data)
         sessionStorage.setItem("produk", response.data.data.length) 
     }
