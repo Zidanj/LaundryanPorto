@@ -1,5 +1,5 @@
 import {Route, Routes } from "react-router-dom"
-import Dashboard from "./pages/Dashboard"
+// import Dashboard from "./pages/Dashboard"
 import ProdukPage from "./pages/ProdukPage"
 import ClientPage from "./pages/ClientPage"
 import TransactionPage from "./pages/TransactionPage"
@@ -21,7 +21,7 @@ function App() {
     <Routes>
         <Route element = {<RegisterPage/>} path = "/register"/>
         <Route element = {<SignInPage/>} path="/"/>
-        <Route element = {<Dashboard/>} path="/home"/>
+        {/* <Route element = {<Dashboard/>} path="/home"/> */}
         <Route element = {<TransactionPage/>} path = "/transaksi" />
         <Route element = {<ProdukPage/>} path = "/produk"/>
         <Route element = {<UserPage/>} path = "/user"/>

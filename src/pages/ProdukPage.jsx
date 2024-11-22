@@ -22,7 +22,6 @@ const ProdukPage = () => {
         })
         console.log(response.data)
         setRows(response.data.data)
-        sessionStorage.setItem("produk", response.data.data.length) 
     }
 
     useEffect(()=>{FetchProduk()},[])

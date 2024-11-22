@@ -32,7 +32,7 @@ function SignInPage(){
                 })    
                 localStorage.setItem("token", response.data.data.token)
                 sessionStorage.setItem("username", data.username)
-                navigate("/home")
+                navigate("/transaksi")
                 toast.success("Sign In Berhasil")
                 
             } catch (error) {
@@ -61,7 +61,7 @@ function SignInPage(){
                     name="password"
                     control={form.control}
                     render={({field,fieldState})=>(<Input {...field} 
-                    type= "text" 
+                    type= "password" 
                     label = "Password" 
                     isInvalid={Boolean(fieldState.error)}
                     errorMessage={fieldState.error?.message}

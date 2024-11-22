@@ -14,11 +14,6 @@ const ProdukSchema = z.object({
 })
 
 const ProdukModal = ({closeModal, onSubmit, defaultValue, FetchProduk}) => {
-
-    // const [nameInput, SetNameInput] = useState("")
-    // const [priceInput, SetPriceInput] = useState("")
-    // const [typeInput, SetTypeInput] = useState("")
-
     const token = localStorage.getItem("token")
     const form = useForm({
         defaultValues : {
@@ -103,7 +98,6 @@ const ProdukModal = ({closeModal, onSubmit, defaultValue, FetchProduk}) => {
                     errorMessage={fieldState.error?.message}
                     />)}
                 />
-                
             </div>
             <div className="flex justify-end w-96 gap-3 m-3">
                 <Button color="danger" onClick={closeModal}>Cancel</Button>

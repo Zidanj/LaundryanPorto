@@ -15,7 +15,8 @@ const deleteProduk = async (id) => {
         showDenyButton : true,
         showConfirmButton : true,
         confirmButtonText : "Ya!",
-        denyButtonText : "Tidak!"
+        denyButtonText : "Tidak!",
+        icon : "warning"
     })
     if((await confirmation).isConfirmed){
         const response = await AxiosInstance.delete(`/api/v1/products/${id}`,{

@@ -13,11 +13,13 @@ import Swal from "sweetalert2"
 const UserModalEdit = ({closeModal}) => {
     const params = useParams()
     const navigate = useNavigate()
-    const [initialdata, setinitialdata] = useState([])
-    const [nameInput, SetNameInput] = useState("")
-    const [emailInput, SetEmailInput] = useState("")
-    const [userInput, SetUserInput] = useState("")
-    const [roleInput, SetRoleInput] = useState("")
+    const [initialdata, setinitialdata] = useState({
+        id : params.id,
+        name : "",
+        email : "",
+        username : "",
+        role : ""
+    })
     
     const GetUser = async (data) => {
         const response = await AxiosInstance.get("/api/v1/users/" + params.id, 
@@ -27,8 +29,13 @@ const UserModalEdit = ({closeModal}) => {
                 }
             }
         )
-        setinitialdata(response.data.data)
-        console.log(response)
+        setinitialdata({...initialdata,
+            name : response.data.data.name,
+            email : response.data.data.email,
+            username : response.data.data.username,
+            role : response.data.data.role
+        })
+        console.log(initialdata)
     }
     useEffect(()=>{GetUser()},[])
 
@@ -37,10 +44,10 @@ const UserModalEdit = ({closeModal}) => {
         const response = await AxiosInstance.put("/api/v1/users/",
             {
                 id : params.id,
-                name : nameInput,
-                email : emailInput,
-                username : userInput,
-                role : roleInput
+                name : initialdata.name,
+                email : initialdata.email,
+                username : initialdata.username,
+                role : initialdata.role
             },
             {
                 headers : {
@@ -60,42 +67,35 @@ const UserModalEdit = ({closeModal}) => {
                 <Divider/>
                 <Input
                 type="text"
-                name="Id" 
-                className="w-96 m-3"
-                label = "Masukkan Kode Service"
-                value={params.id}
-                />
-                <Input
-                type="text"
                 name="name" 
                 className="w-96 m-3"
                 label = "Masukkan Nama Pengguna"
-                value={nameInput}
-                onChange={(event)=>{SetNameInput(event.target.value)}}
+                value={initialdata.name}
+                onChange={(event)=>setinitialdata({...initialdata, name : event.target.value})}
                 />
                 <Input 
                 name="Email"
                 className="w-96 m-3"
                 label = "Masukkan Alamat Email Pengguna"
-                value={emailInput}
-                onChange={(event)=>{SetEmailInput(event.target.value)}}
+                value={initialdata.email}
+                onChange={(event)=>setinitialdata({...initialdata, email : event.target.value})}
                 />
                 <Input 
                 name="Username"
                 className="w-96 m-3"
                 label = "Masukkan Username"
-                value={userInput}
-                onChange={(event)=>{SetUserInput(event.target.value)}}
+                value={initialdata.username}
+                onChange={(event)=>setinitialdata({...initialdata, username : event.target.value})}
                 />
                 <Input 
                 name="role"
                 className="w-96 m-3"
                 label = "Masukkan Peran Pengguna"
-                value={roleInput}
-                onChange={(event)=>{SetRoleInput(event.target.value)}}
+                value={initialdata.role}
+                onChange={(event)=>setinitialdata({...initialdata, role : event.target.value})}
                 />
                 <div className="flex justify-end gap-3 m-3">
-                    <Button onClick={closeModal} color="danger">Cancel</Button>
+                    <Button onClick={(e)=>navigate("/user")} color="danger">Cancel</Button>
                     <Button color="primary" onClick={()=>{updateUser()}}>Submit</Button>
                 </div>
             </div>

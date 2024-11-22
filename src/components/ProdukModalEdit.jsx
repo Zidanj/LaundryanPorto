@@ -5,13 +5,16 @@ import { useNavigate, useParams } from "react-router-dom"
 import Swal from "sweetalert2"
 
 
+
 const ProdukModalEdit = ({closeModal}) => {
     const params = useParams()
     const navigate = useNavigate()
-    const [initialdata, setinitialdata] = useState([])
-    const [nameInput, SetNameInput] = useState("")
-    const [priceInput, SetPriceInput] = useState("")
-    const [typeInput, SetTypeInput] = useState("")
+    const [initialdata, setinitialdata] = useState({
+        id : params.id,
+        name : "",
+        price : "",
+        type : ""
+    })
 
     const GetProduk = async (data) => {
         const response = await AxiosInstance.get("/api/v1/products/" + params.id,
@@ -20,18 +23,23 @@ const ProdukModalEdit = ({closeModal}) => {
                 Authorization : localStorage.getItem("token")
             }
         })
-        console.log(response.data)
-        setinitialdata(response.data.data)
+        setinitialdata({...initialdata, 
+            name : response.data.data.name,
+            price : response.data.data.price,
+            type : response.data.data.type
+        })
+        console.log(response.data.data)
     }
+    useEffect(()=>{GetProduk()},[])
 
     const UpdateProduk = async(data) => {
         try {
             const response = await AxiosInstance.put("/api/v1/products/", 
                 {
                     id : params.id,
-                    name : nameInput,
-                    price : parseInt(priceInput),
-                    type : typeInput
+                    name : initialdata.name,
+                    price : parseInt(initialdata.price),
+                    type : initialdata.type
                 },
                 {
                 headers : {
@@ -64,34 +72,27 @@ const ProdukModalEdit = ({closeModal}) => {
             <div>
                 <Input 
                 type="text"
-                name="id"
-                label ="Id Produk" 
-                className="w-96 m-3"
-                value= {params.id}
-                />
-                <Input 
-                type="text"
                 name="name"
                 label ="Masukkan nama produk" 
                 className="w-96 m-3"
-                value = {nameInput}
-                onChange={(event)=>SetNameInput(event.target.value)}
+                value = {initialdata.name}
+                onChange={(event)=>setinitialdata({...initialdata, name : event.target.value})}
                 />
                 <Input 
                 type="number"
                 name="price"
                 label ="Masukkan harga produk" 
                 className="w-96 m-3" 
-                value={priceInput}
-                onChange={(event)=>SetPriceInput(event.target.value)}
+                value = {initialdata.price}
+                onChange={(event)=>setinitialdata({...initialdata, price : event.target.value})}
                 />
                 <Input
                 type="text"
                 name="type"
                 label ="Masukkan Tipe" 
                 className="w-96 m-3" 
-                value={typeInput}
-                onChange={(event)=>SetTypeInput(event.target.value)}
+                value = {initialdata.type}
+                onChange={(event)=>setinitialdata({...initialdata, type : event.target.value})}
                 />
             </div>
             <div className="flex justify-end w-96 gap-3 m-3">

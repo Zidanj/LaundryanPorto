@@ -10,7 +10,7 @@ import { BiDetail, BiPencil } from "react-icons/bi"
 const DetailTrans = () => {
     const [initialdata, setInitialData] = useState(null);
     const { id } = useParams()
-    const fetchTrans =async (data) => {
+    const fetchTrans = useCallback(async (data) => {
         const response = await AxiosInstance.get(`/api/v1/bills/${id}`,
             {
                 headers: {
@@ -20,12 +20,15 @@ const DetailTrans = () => {
         )
         setInitialData(response.data.data)
         console.log(response.data.data)
-    }
+    }, [id])
+
 
     useEffect(() => {
+        // PENGECEKAN IYEU BERGUNA SUPAYA PEMANGGILAN API NA BAKAL JALAN LAMUN SI DETAIL DATA NA KOSONG MUNGKUL, LAMUN GEUS AYA MAH MANEHNA MOAL MANGGIL API CO
         if (!initialdata) {
             fetchTrans()
         }
+
     }, [initialdata])
 
     return (

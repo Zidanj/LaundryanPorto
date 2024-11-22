@@ -8,38 +8,44 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import Swal from "sweetalert2"
 import { useNavigate, useParams } from "react-router-dom"
 
-const ClientSchema = z.object({
-    name : z.string().min(1,"Masukkan Nama Produk"),
-    phoneNumber : z.string().min(1,"Masukkan Harga Produk"),
-    address : z.string().min(1,"Masukkan Satuan Produk")
-})
-
 const ClientModalEdit = ({closeModal, fetchCust}) => {
-
+    const params = useParams()
     const [nameInput, SetNameInput] = useState("")
     const [phoneNumberInput, SetPhoneNumberInput] = useState("")
     const [addressInput, SetAddressInput] = useState("")
+    const [initialdata, setinitialdata] = useState({
+        id : params.id,
+        name : "",
+        phoneNumber : 0,
+        address : ""
+    })
 
     const token = localStorage.getItem("token")
-    const params = useParams()
     const navigate = useNavigate()
 
     const GetCust = async (data) => {
-        const response = await AxiosInstance.get("/api/v1/customers" + params.id,{
+        const response = await AxiosInstance.get("/api/v1/customers/" + params.id,{
             headers : {
                 Authorization : localStorage.getItem("token")
             }
         })
+        setinitialdata({...initialdata,
+            name : response.data.data.name,
+            phoneNumber : response.data.data.phoneNumber,
+            address : response.data.data.address
+        })
+        console.log(response)
     }
+    useEffect(()=>{GetCust()},[])
 
     const UpdateClient = async (data) => {
         try {
             const response = await AxiosInstance.put("/api/v1/customers", 
                 {
                 id : params.id,
-                name : nameInput,
-                phoneNumber : phoneNumberInput,
-                address : addressInput
+                name : initialdata.name,
+                phoneNumber : initialdata.phoneNumber,
+                address : initialdata.address
                 },  
                 {
                     headers : {
@@ -70,36 +76,28 @@ const ClientModalEdit = ({closeModal, fetchCust}) => {
             <Divider/>
             <div>
                 <Input
-                readOnly
-                    type="text"
-                    name="name"
-                    label ="Id Pelanggan" 
-                    className="w-96 m-3" 
-                    value={params.id}
-                />
-                <Input
                     type="text"
                     name="name"
                     label ="Masukkan Nama Pelanggan" 
                     className="w-96 m-3" 
-                    value={nameInput}
-                    onChange={(event)=>{SetNameInput(event.target.value)}}
+                    value={initialdata.name}
+                    onChange={(event)=>setinitialdata({...initialdata ,name : event.target.value})}
                 />
                 <Input
                     type="text"
                     name="phoneNumber"
                     label ="Masukkan Nomor Telepon" 
                     className="w-96 m-3" 
-                    value={phoneNumberInput}
-                    onChange={(event)=>{SetPhoneNumberInput(event.target.value)}}
+                    value={initialdata.phoneNumber}
+                    onChange={(event)=>setinitialdata({...initialdata ,phoneNumber : event.target.value})}
                 />
                 <Input
                     type="text"
                     name="address"
                     label ="Masukkan Alamat Pelanggan" 
                     className="w-96 m-3" 
-                    value={addressInput}
-                    onChange={(event)=>{SetAddressInput(event.target.value)}}
+                    value={initialdata.address}
+                    onChange={(event)=>setinitialdata({...initialdata ,address : event.target.value})}
                 />  
             </div>
             <div className="flex justify-end w-96 gap-3 m-3">

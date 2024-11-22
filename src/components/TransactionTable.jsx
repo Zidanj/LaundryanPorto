@@ -22,7 +22,6 @@ const TransactionTable = ({rows, editRow}) => {
                             <TableCell>{row.customer.address}</TableCell>
                             <TableCell>{row.customer.phoneNumber}</TableCell>
                             <TableCell>
-                                <Button color="secondary" className="mr-3 text-2xl" onClick={()=>editRow(idx)}><BiPencil/></Button>
                                 <Button color="danger" className="mr-3 text-2xl" onClick={()=>{navigate(`detail/${rows[idx]['id']}`)}}><BiDetail/></Button>
                             </TableCell>
                         </TableRow>
